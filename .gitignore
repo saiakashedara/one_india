@@ -1,0 +1,48 @@
+# dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# build files
+build/
+dist/
+.next/
+out/
+
+# misc
+.DS_Store
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# logs
+logs/
+*.log
+npm-debug.log*
+
+# testing
+coverage/
+.nyc_output/
+
+# docker
+.dockerignore
+
+# database
+*.db
+*.sqlite
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# OS files
+Thumbs.db
