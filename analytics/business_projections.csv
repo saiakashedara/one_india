@@ -1,0 +1,11 @@
+METRIC,JANUARY_DATA,FEBRUARY_PROJECTION,MARCH_PROJECTION,Q1_TARGET,CURRENT_STATUS
+Daily Active Users,3950,8500,15000,15000,On Track
+Monthly Registrations,328,725,1250,2500,On Track
+Total Transaction Volume INR,784650,2500000,5000000,7500000,On Track
+Platform Revenue INR,23539.5,75000,150000,250000,On Track
+KYC Completed,655,2100,5500,8000,On Track
+Average Transaction Value INR,193.7,250,300,300,On Track
+Successful Transaction Rate %,97.3,98.5,99.0,99.5,On Track
+API Uptime %,99.63,99.75,99.90,99.95,On Track
+Average Response Time ms,131,120,110,100,On Track
+Cache Hit Rate %,84,87,90,92,On Track
