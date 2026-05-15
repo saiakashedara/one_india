@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>OneIndia Analytics Report</title>
+  <style>
+    @page { size: A4; margin: 16mm; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: #172033; background: #f6f8fb; line-height: 1.45; }
+    main { max-width: 980px; margin: 0 auto; padding: 28px; background: #fff; }
+    header { border-bottom: 4px solid #137c8b; padding-bottom: 22px; margin-bottom: 24px; }
+    h1 { font-size: 36px; margin: 0 0 8px; letter-spacing: 0; }
+    h2 { font-size: 22px; margin: 28px 0 12px; color: #0f5f6c; break-after: avoid; }
+    h3 { margin: 0; font-size: 15px; color: #172033; }
+    p { margin: 6px 0 12px; }
+    .subtitle { color: #5b6475; font-size: 15px; max-width: 760px; }
+    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 18px 0; }
+    .card { border: 1px solid #d9e2ec; border-radius: 8px; padding: 14px; background: #fbfdff; min-height: 118px; }
+    .card b { display: block; color: #5b6475; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+    .card strong { display: block; font-size: 24px; margin-top: 8px; color: #103f46; }
+    .card span { display: block; font-size: 12px; margin-top: 8px; color: #5b6475; }
+    .insights { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .insight { border-left: 4px solid #f59f00; padding: 8px 12px; background: #fff8ea; }
+    .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .chart { border: 1px solid #d9e2ec; border-radius: 8px; padding: 14px; background: #fff; break-inside: avoid; }
+    .chart.full { grid-column: 1 / -1; }
+    .chart-heading { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 8px; }
+    .chart-heading span { color: #647084; font-size: 12px; }
+    .axis { stroke: #ccd6e0; stroke-width: 1; }
+    .tick { fill: #687386; font-size: 12px; }
+    .tick.small { font-size: 9px; }
+    svg { width: 100%; height: auto; display: block; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 10px; break-inside: avoid; }
+    th, td { border-bottom: 1px solid #e3e8ef; padding: 8px; text-align: left; }
+    th { background: #edf6f7; color: #123f46; }
+    .projection-grid { display: grid; gap: 12px; }
+    .projection { display: grid; grid-template-columns: 240px 1fr; gap: 16px; align-items: center; }
+    .projection strong, .projection span { display: block; }
+    .projection span { color: #647084; font-size: 12px; }
+    .bar { height: 16px; background: #edf1f5; border-radius: 999px; overflow: hidden; }
+    .bar i { display: block; height: 100%; background: linear-gradient(90deg, #137c8b, #31a36f); }
+    .powerbi { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .step { border: 1px solid #d9e2ec; border-radius: 8px; padding: 12px; background: #fbfdff; }
+    .step b { color: #0f5f6c; }
+    .page-break { break-before: page; }
+    footer { margin-top: 28px; padding-top: 12px; border-top: 1px solid #d9e2ec; color: #647084; font-size: 11px; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>OneIndia Analytics Report</h1>
+      <p class="subtitle">Statistics, operational trends, financial performance, endpoint health, and Power BI visualization guidance based on CSV datasets in the analytics folder.</p>
+    </header>
+
+    <h2>Executive Snapshot</h2>
+    <div class="cards">
+      <div class="card"><b>Active Users</b><strong>3,950</strong><span>328 new registrations on latest day</span></div>
+      <div class="card"><b>Platform Revenue</b><strong>Rs. 23,539.5</strong><span>4141% growth from day 1</span></div>
+      <div class="card"><b>API Uptime</b><strong>99.6%</strong><span>465 failed requests out of 1,24,320</span></div>
+      <div class="card"><b>Transaction Success</b><strong>97.5%</strong><span>4,050 latest-day P2P transfers</span></div>
+    </div>
+
+    <div class="insights">
+      <div class="insight"><strong>Growth signal:</strong> Active users reached 3,950 and retention improved to 87%.</div>
+      <div class="insight"><strong>Operational risk:</strong> /api/kyc/upload is the slowest endpoint at 245 ms average response time.</div>
+      <div class="insight"><strong>Traffic concentration:</strong> /api/health has the highest tracked API traffic with 52,000 requests.</div>
+      <div class="insight"><strong>KYC gap:</strong> KYC completion is 16.6% of active users, making onboarding completion a key product metric.</div>
+    </div>
+
+    <h2>Statistical Graphs</h2>
+    <div class="charts">
+      
+    <section class="chart">
+      <div class="chart-heading">
+        <h3>Active User Growth</h3>
+        <span>450 to 3,950</span>
+      </div>
+      <svg viewBox="0 0 760 260" role="img" aria-label="Active User Growth">
+        <line x1="48" y1="212" x2="712" y2="212" class="axis" />
+        <line x1="48" y1="48" x2="48" y2="212" class="axis" />
+        <text x="48" y="28" class="tick">3,950</text>
+        <text x="48" y="244" class="tick">450</text>
+        <polyline points="48.0,212.0 95.4,208.7 142.9,204.5 190.3,197.9 237.7,190.0 285.1,181.5 332.6,171.2 380.0,160.5 427.4,147.8 474.9,134.7 522.3,119.7 569.7,104.2 617.1,86.9 664.6,68.1 712.0,48.0" fill="none" stroke="#137c8b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="48.0" cy="212.0" r="4" fill="#137c8b" /><circle cx="95.4" cy="208.7" r="4" fill="#137c8b" /><circle cx="142.9" cy="204.5" r="4" fill="#137c8b" /><circle cx="190.3" cy="197.9" r="4" fill="#137c8b" /><circle cx="237.7" cy="190.0" r="4" fill="#137c8b" /><circle cx="285.1" cy="181.5" r="4" fill="#137c8b" /><circle cx="332.6" cy="171.2" r="4" fill="#137c8b" /><circle cx="380.0" cy="160.5" r="4" fill="#137c8b" /><circle cx="427.4" cy="147.8" r="4" fill="#137c8b" /><circle cx="474.9" cy="134.7" r="4" fill="#137c8b" /><circle cx="522.3" cy="119.7" r="4" fill="#137c8b" /><circle cx="569.7" cy="104.2" r="4" fill="#137c8b" /><circle cx="617.1" cy="86.9" r="4" fill="#137c8b" /><circle cx="664.6" cy="68.1" r="4" fill="#137c8b" /><circle cx="712.0" cy="48.0" r="4" fill="#137c8b" />
+      </svg>
+    </section>
+      
+    <section class="chart">
+      <div class="chart-heading">
+        <h3>Platform Revenue Trend</h3>
+        <span>Rs. 555 to Rs. 23,539.5</span>
+      </div>
+      <svg viewBox="0 0 760 260" role="img" aria-label="Platform Revenue Trend">
+        <line x1="48" y1="212" x2="712" y2="212" class="axis" />
+        <line x1="48" y1="48" x2="48" y2="212" class="axis" />
+        <text x="48" y="28" class="tick">Rs. 23,539.5</text>
+        <text x="48" y="244" class="tick">Rs. 555</text>
+        <polyline points="48.0,212.0 95.4,210.2 142.9,208.4 190.3,205.5 237.7,202.1 285.1,197.5 332.6,191.3 380.0,183.0 427.4,172.6 474.9,158.7 522.3,142.9 569.7,125.3 617.1,102.0 664.6,77.4 712.0,48.0" fill="none" stroke="#31a36f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="48.0" cy="212.0" r="4" fill="#31a36f" /><circle cx="95.4" cy="210.2" r="4" fill="#31a36f" /><circle cx="142.9" cy="208.4" r="4" fill="#31a36f" /><circle cx="190.3" cy="205.5" r="4" fill="#31a36f" /><circle cx="237.7" cy="202.1" r="4" fill="#31a36f" /><circle cx="285.1" cy="197.5" r="4" fill="#31a36f" /><circle cx="332.6" cy="191.3" r="4" fill="#31a36f" /><circle cx="380.0" cy="183.0" r="4" fill="#31a36f" /><circle cx="427.4" cy="172.6" r="4" fill="#31a36f" /><circle cx="474.9" cy="158.7" r="4" fill="#31a36f" /><circle cx="522.3" cy="142.9" r="4" fill="#31a36f" /><circle cx="569.7" cy="125.3" r="4" fill="#31a36f" /><circle cx="617.1" cy="102.0" r="4" fill="#31a36f" /><circle cx="664.6" cy="77.4" r="4" fill="#31a36f" /><circle cx="712.0" cy="48.0" r="4" fill="#31a36f" />
+      </svg>
+    </section>
+      
+    <section class="chart">
+      <div class="chart-heading">
+        <h3>Endpoint Response Time</h3>
+        <span>Highest: 245 ms</span>
+      </div>
+      <svg viewBox="0 0 760 300" role="img" aria-label="Endpoint Response Time">
+        <line x1="52" y1="248" x2="708" y2="248" class="axis" />
+        
+            <rect x="57.0" y="129.6" width="55.6" height="118.4" rx="3" fill="#f59f00" />
+            <text x="84.8" y="270" class="tick small" text-anchor="middle">auth/register</text>
+          
+            <rect x="122.6" y="144.0" width="55.6" height="104.0" rx="3" fill="#f59f00" />
+            <text x="150.4" y="270" class="tick small" text-anchor="middle">auth/login</text>
+          
+            <rect x="188.2" y="170.4" width="55.6" height="77.6" rx="3" fill="#f59f00" />
+            <text x="216.0" y="270" class="tick small" text-anchor="middle">payments/wal.</text>
+          
+            <rect x="253.8" y="120.8" width="55.6" height="127.2" rx="3" fill="#f59f00" />
+            <text x="281.6" y="270" class="tick small" text-anchor="middle">payments/tra.</text>
+          
+            <rect x="319.4" y="176.8" width="55.6" height="71.2" rx="3" fill="#f59f00" />
+            <text x="347.2" y="270" class="tick small" text-anchor="middle">transactions</text>
+          
+            <rect x="385.0" y="164.8" width="55.6" height="83.2" rx="3" fill="#f59f00" />
+            <text x="412.8" y="270" class="tick small" text-anchor="middle">users/profile</text>
+          
+            <rect x="450.6" y="89.6" width="55.6" height="158.4" rx="3" fill="#f59f00" />
+            <text x="478.4" y="270" class="tick small" text-anchor="middle">kyc/verify</text>
+          
+            <rect x="516.2" y="52.0" width="55.6" height="196.0" rx="3" fill="#f59f00" />
+            <text x="544.0" y="270" class="tick small" text-anchor="middle">kyc/upload</text>
+          
+            <rect x="581.8" y="158.4" width="55.6" height="89.6" rx="3" fill="#f59f00" />
+            <text x="609.6" y="270" class="tick small" text-anchor="middle">payments/his.</text>
+          
+            <rect x="647.4" y="212.0" width="55.6" height="36.0" rx="3" fill="#f59f00" />
+            <text x="675.2" y="270" class="tick small" text-anchor="middle">health</text>
+          
+      </svg>
+    </section>
+      
+    <section class="chart">
+      <div class="chart-heading">
+        <h3>Endpoint Request Volume</h3>
+        <span>Highest: 52,000</span>
+      </div>
+      <svg viewBox="0 0 760 300" role="img" aria-label="Endpoint Request Volume">
+        <line x1="52" y1="248" x2="708" y2="248" class="axis" />
+        
+            <rect x="57.0" y="215.9" width="55.6" height="32.1" rx="3" fill="#536dfe" />
+            <text x="84.8" y="270" class="tick small" text-anchor="middle">auth/register</text>
+          
+            <rect x="122.6" y="207.1" width="55.6" height="40.9" rx="3" fill="#536dfe" />
+            <text x="150.4" y="270" class="tick small" text-anchor="middle">auth/login</text>
+          
+            <rect x="188.2" y="205.7" width="55.6" height="42.3" rx="3" fill="#536dfe" />
+            <text x="216.0" y="270" class="tick small" text-anchor="middle">payments/wal.</text>
+          
+            <rect x="253.8" y="224.6" width="55.6" height="23.4" rx="3" fill="#536dfe" />
+            <text x="281.6" y="270" class="tick small" text-anchor="middle">payments/tra.</text>
+          
+            <rect x="319.4" y="198.1" width="55.6" height="49.9" rx="3" fill="#536dfe" />
+            <text x="347.2" y="270" class="tick small" text-anchor="middle">transactions</text>
+          
+            <rect x="385.0" y="209.6" width="55.6" height="38.4" rx="3" fill="#536dfe" />
+            <text x="412.8" y="270" class="tick small" text-anchor="middle">users/profile</text>
+          
+            <rect x="450.6" y="241.0" width="55.6" height="7.0" rx="3" fill="#536dfe" />
+            <text x="478.4" y="270" class="tick small" text-anchor="middle">kyc/verify</text>
+          
+            <rect x="516.2" y="243.4" width="55.6" height="4.6" rx="3" fill="#536dfe" />
+            <text x="544.0" y="270" class="tick small" text-anchor="middle">kyc/upload</text>
+          
+            <rect x="581.8" y="214.5" width="55.6" height="33.5" rx="3" fill="#536dfe" />
+            <text x="609.6" y="270" class="tick small" text-anchor="middle">payments/his.</text>
+          
+            <rect x="647.4" y="52.0" width="55.6" height="196.0" rx="3" fill="#536dfe" />
+            <text x="675.2" y="270" class="tick small" text-anchor="middle">health</text>
+          
+      </svg>
+    </section>
+      
+    <section class="chart">
+      <div class="chart-heading">
+        <h3>Average Transaction Value</h3>
+        <span>Rs. 75.5 to Rs. 193.7</span>
+      </div>
+      <svg viewBox="0 0 760 260" role="img" aria-label="Average Transaction Value">
+        <line x1="48" y1="212" x2="712" y2="212" class="axis" />
+        <line x1="48" y1="48" x2="48" y2="212" class="axis" />
+        <text x="48" y="28" class="tick">Rs. 193.7</text>
+        <text x="48" y="244" class="tick">Rs. 75.5</text>
+        <polyline points="48.0,212.0 95.4,197.6 142.9,188.3 190.3,170.8 237.7,161.8 285.1,150.3 332.6,137.2 380.0,122.5 427.4,108.6 474.9,87.8 522.3,73.9 569.7,67.0 617.1,54.5 664.6,51.1 712.0,48.0" fill="none" stroke="#c44636" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="48.0" cy="212.0" r="4" fill="#c44636" /><circle cx="95.4" cy="197.6" r="4" fill="#c44636" /><circle cx="142.9" cy="188.3" r="4" fill="#c44636" /><circle cx="190.3" cy="170.8" r="4" fill="#c44636" /><circle cx="237.7" cy="161.8" r="4" fill="#c44636" /><circle cx="285.1" cy="150.3" r="4" fill="#c44636" /><circle cx="332.6" cy="137.2" r="4" fill="#c44636" /><circle cx="380.0" cy="122.5" r="4" fill="#c44636" /><circle cx="427.4" cy="108.6" r="4" fill="#c44636" /><circle cx="474.9" cy="87.8" r="4" fill="#c44636" /><circle cx="522.3" cy="73.9" r="4" fill="#c44636" /><circle cx="569.7" cy="67.0" r="4" fill="#c44636" /><circle cx="617.1" cy="54.5" r="4" fill="#c44636" /><circle cx="664.6" cy="51.1" r="4" fill="#c44636" /><circle cx="712.0" cy="48.0" r="4" fill="#c44636" />
+      </svg>
+    </section>
+      
+    <section class="chart">
+      <div class="chart-heading">
+        <h3>Retention Rate</h3>
+        <span>71% to 87%</span>
+      </div>
+      <svg viewBox="0 0 760 260" role="img" aria-label="Retention Rate">
+        <line x1="48" y1="212" x2="712" y2="212" class="axis" />
+        <line x1="48" y1="48" x2="48" y2="212" class="axis" />
+        <text x="48" y="28" class="tick">87%</text>
+        <text x="48" y="244" class="tick">71%</text>
+        <polyline points="48.0,212.0 95.4,191.5 142.9,171.0 190.3,150.5 237.7,130.0 285.1,109.5 332.6,99.3 380.0,89.0 427.4,78.8 474.9,68.5 522.3,68.5 569.7,58.3 617.1,58.3 664.6,48.0 712.0,48.0" fill="none" stroke="#7b4ab8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="48.0" cy="212.0" r="4" fill="#7b4ab8" /><circle cx="95.4" cy="191.5" r="4" fill="#7b4ab8" /><circle cx="142.9" cy="171.0" r="4" fill="#7b4ab8" /><circle cx="190.3" cy="150.5" r="4" fill="#7b4ab8" /><circle cx="237.7" cy="130.0" r="4" fill="#7b4ab8" /><circle cx="285.1" cy="109.5" r="4" fill="#7b4ab8" /><circle cx="332.6" cy="99.3" r="4" fill="#7b4ab8" /><circle cx="380.0" cy="89.0" r="4" fill="#7b4ab8" /><circle cx="427.4" cy="78.8" r="4" fill="#7b4ab8" /><circle cx="474.9" cy="68.5" r="4" fill="#7b4ab8" /><circle cx="522.3" cy="68.5" r="4" fill="#7b4ab8" /><circle cx="569.7" cy="58.3" r="4" fill="#7b4ab8" /><circle cx="617.1" cy="58.3" r="4" fill="#7b4ab8" /><circle cx="664.6" cy="48.0" r="4" fill="#7b4ab8" /><circle cx="712.0" cy="48.0" r="4" fill="#7b4ab8" />
+      </svg>
+    </section>
+      
+    <section class="chart full">
+      <div class="chart-heading">
+        <h3>Q1 Projection Progress</h3>
+        <span>January baseline against Q1 targets</span>
+      </div>
+      <div class="projection-grid">
+        
+            <div class="projection">
+              <div>
+                <strong>Daily Active Users</strong>
+                <span>3,950 current / 15,000 target</span>
+              </div>
+              <div class="bar"><i style="width:26.333333333333332%"></i></div>
+            </div>
+            <div class="projection">
+              <div>
+                <strong>Platform Revenue INR</strong>
+                <span>23,539.5 current / 2,50,000 target</span>
+              </div>
+              <div class="bar"><i style="width:9.4158%"></i></div>
+            </div>
+            <div class="projection">
+              <div>
+                <strong>API Uptime %</strong>
+                <span>99.6 current / 100 target</span>
+              </div>
+              <div class="bar"><i style="width:99.67983991995996%"></i></div>
+            </div>
+            <div class="projection">
+              <div>
+                <strong>Average Response Time ms</strong>
+                <span>131 current / 100 target</span>
+              </div>
+              <div class="bar"><i style="width:76.33587786259542%"></i></div>
+            </div>
+      </div>
+    </section>
+    </div>
+
+    <h2 class="page-break">Endpoint Performance Table</h2>
+    <table>
+      <thead>
+        <tr><th>Endpoint</th><th>Total Requests</th><th>Avg Response</th><th>P95 Response</th><th>Uptime</th></tr>
+      </thead>
+      <tbody>
+    <tr>
+      <td>/api/auth/register</td>
+      <td>8,520</td>
+      <td>148 ms</td>
+      <td>185 ms</td>
+      <td>99.2%</td>
+    </tr>
+    <tr>
+      <td>/api/auth/login</td>
+      <td>10,850</td>
+      <td>130 ms</td>
+      <td>165 ms</td>
+      <td>99.7%</td>
+    </tr>
+    <tr>
+      <td>/api/payments/wallet</td>
+      <td>11,230</td>
+      <td>97 ms</td>
+      <td>125 ms</td>
+      <td>99.7%</td>
+    </tr>
+    <tr>
+      <td>/api/payments/transfer</td>
+      <td>6,200</td>
+      <td>159 ms</td>
+      <td>215 ms</td>
+      <td>98.6%</td>
+    </tr>
+    <tr>
+      <td>/api/transactions</td>
+      <td>13,250</td>
+      <td>89 ms</td>
+      <td>115 ms</td>
+      <td>99.9%</td>
+    </tr>
+    <tr>
+      <td>/api/users/profile</td>
+      <td>10,200</td>
+      <td>104 ms</td>
+      <td>140 ms</td>
+      <td>99.8%</td>
+    </tr>
+    <tr>
+      <td>/api/kyc/verify</td>
+      <td>1,850</td>
+      <td>198 ms</td>
+      <td>260 ms</td>
+      <td>97.8%</td>
+    </tr>
+    <tr>
+      <td>/api/kyc/upload</td>
+      <td>1,220</td>
+      <td>245 ms</td>
+      <td>350 ms</td>
+      <td>96.7%</td>
+    </tr>
+    <tr>
+      <td>/api/payments/history</td>
+      <td>8,900</td>
+      <td>112 ms</td>
+      <td>145 ms</td>
+      <td>99.7%</td>
+    </tr>
+    <tr>
+      <td>/api/health</td>
+      <td>52,000</td>
+      <td>45 ms</td>
+      <td>60 ms</td>
+      <td>100%</td>
+    </tr></tbody>
+    </table>
+
+    <h2>Power BI Visualization Plan</h2>
+    <div class="powerbi">
+      <div class="step"><b>1. Import data</b><p>Use Get Data > Text/CSV and import all five CSV files from the analytics folder.</p></div>
+      <div class="step"><b>2. Build measures</b><p>Create success rate, KYC completion rate, revenue per transaction, and performance category measures.</p></div>
+      <div class="step"><b>3. Create pages</b><p>Use pages for Executive Overview, Technical Performance, Business Metrics, and Q1 Projections.</p></div>
+      <div class="step"><b>4. Add slicers</b><p>Add date, endpoint, status, and performance category slicers for interactive exploration.</p></div>
+      <div class="step"><b>5. Apply thresholds</b><p>Use conditional formatting for response time above 200 ms, uptime below 99%, and error rate above 2%.</p></div>
+      <div class="step"><b>6. Publish</b><p>Publish to Power BI Service, schedule daily refresh, and pin KPI cards to a stakeholder dashboard.</p></div>
+    </div>
+
+    <h2>Recommended Power BI Visuals</h2>
+    <table>
+      <thead><tr><th>Dashboard Area</th><th>Visual</th><th>Fields</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>Executive</td><td>KPI cards</td><td>ACTIVE_USERS, TOTAL_REVENUE_INR, UPTIME_PERCENT</td><td>Show business health at a glance.</td></tr>
+        <tr><td>Growth</td><td>Line chart</td><td>DATE, ACTIVE_USERS, RETURNING_USERS</td><td>Track adoption and retention movement.</td></tr>
+        <tr><td>Revenue</td><td>Combo chart</td><td>DATE, TOTAL_VOLUME_INR, SUCCESSFUL_TRANSACTIONS</td><td>Compare volume growth with reliability.</td></tr>
+        <tr><td>Technical</td><td>Bar chart</td><td>ENDPOINT, AVERAGE_RESPONSE_TIME_MS</td><td>Rank slow endpoints for optimization.</td></tr>
+        <tr><td>Reliability</td><td>Matrix</td><td>ENDPOINT, UPTIME_PERCENT, P95_RESPONSE_TIME_MS</td><td>Spot SLA risk quickly.</td></tr>
+        <tr><td>Forecast</td><td>Progress bars</td><td>JANUARY_DATA, MARCH_PROJECTION, Q1_TARGET</td><td>Monitor Q1 target progress.</td></tr>
+      </tbody>
+    </table>
+
+    <footer>
+      Generated from OneIndia analytics CSV files. Latest source date: 2024-01-15. Average sampled API response: 127 ms. Average cache hit rate: 83%.
+    </footer>
+  </main>
+</body>
+</html>
