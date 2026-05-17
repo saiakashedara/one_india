@@ -1,0 +1,462 @@
+.health-page {
+  min-height: calc(100vh - 48px);
+  color: #132033;
+}
+
+.health-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 22px;
+  align-items: stretch;
+  padding: 32px;
+  border-radius: 8px;
+  background:
+    linear-gradient(120deg, rgba(14, 165, 233, 0.14), rgba(255, 255, 255, 0.98) 48%, rgba(22, 163, 74, 0.14)),
+    #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+}
+
+.health-kicker {
+  margin: 0 0 8px;
+  color: #047857;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.health-hero h1 {
+  max-width: 780px;
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.06;
+  letter-spacing: 0;
+}
+
+.health-hero p {
+  max-width: 780px;
+  margin: 14px 0 0;
+  color: #475569;
+  line-height: 1.65;
+}
+
+.health-emergency-card {
+  display: grid;
+  align-content: center;
+  gap: 10px;
+  min-height: 190px;
+  padding: 24px;
+  border-radius: 8px;
+  background: #0f766e;
+  color: #ffffff;
+}
+
+.health-emergency-card span {
+  color: #ccfbf1;
+  font-weight: 800;
+}
+
+.health-emergency-card strong {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.health-emergency-card p {
+  margin: 0;
+  color: #ecfeff;
+}
+
+.health-search-panel,
+.provider-panel,
+.appointment-panel,
+.records-panel {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.06);
+}
+
+.health-search-panel {
+  margin-top: 18px;
+  padding: 14px;
+}
+
+.health-search {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) 180px 170px;
+  gap: 12px;
+}
+
+.health-search input,
+.health-search select,
+.appointment-panel select,
+.specialty-strip button,
+.provider-footer button,
+.slot-grid button,
+.confirm-appointment,
+.records-panel button {
+  font: inherit;
+}
+
+.health-search input,
+.health-search select,
+.appointment-panel select {
+  min-height: 46px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.specialty-strip {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 8px;
+  overflow-x: auto;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.specialty-strip button,
+.provider-footer button,
+.slot-grid button,
+.confirm-appointment,
+.records-panel button {
+  border: 0;
+  cursor: pointer;
+}
+
+.specialty-strip button {
+  min-width: 132px;
+  min-height: 42px;
+  padding: 0 14px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  color: #334155;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.specialty-strip button.active {
+  background: #0f766e;
+  color: #ffffff;
+}
+
+.health-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 18px;
+  align-items: start;
+  margin-top: 18px;
+}
+
+.provider-panel,
+.appointment-panel,
+.records-panel {
+  padding: 18px;
+}
+
+.appointment-panel {
+  position: sticky;
+  top: 18px;
+}
+
+.health-section-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.health-section-heading h2,
+.appointment-panel h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.health-section-heading p {
+  margin: 4px 0 0;
+  color: #64748b;
+}
+
+.health-section-heading span {
+  color: #0f766e;
+  font-weight: 900;
+}
+
+.provider-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.provider-card {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.provider-card.selected {
+  border-color: #0f766e;
+  box-shadow: 0 14px 32px rgba(15, 118, 110, 0.12);
+}
+
+.provider-top,
+.appointment-doctor {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.provider-avatar {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  background: #dbeafe;
+  color: #075985;
+  font-weight: 900;
+}
+
+.provider-type {
+  color: #0f766e;
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.provider-card h3 {
+  margin: 4px 0;
+  font-size: 1.05rem;
+}
+
+.provider-card p,
+.appointment-doctor span {
+  margin: 0;
+  color: #64748b;
+}
+
+.provider-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.provider-stats span {
+  padding: 8px;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #334155;
+  font-size: 0.84rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.provider-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.provider-tags li {
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: #ecfeff;
+  color: #0e7490;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.provider-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.provider-footer span {
+  color: #047857;
+  font-weight: 900;
+}
+
+.provider-footer button,
+.confirm-appointment,
+.records-panel button {
+  min-height: 40px;
+  border-radius: 8px;
+  background: #0f766e;
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.provider-footer button {
+  min-width: 82px;
+}
+
+.appointment-doctor {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.appointment-doctor strong,
+.appointment-doctor span {
+  display: block;
+}
+
+.appointment-panel label {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+  color: #475569;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.slot-grid {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.slot-grid button {
+  min-height: 42px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  color: #334155;
+  font-weight: 800;
+}
+
+.slot-grid button.active {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.appointment-summary {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.appointment-summary div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #475569;
+}
+
+.appointment-summary strong {
+  color: #132033;
+}
+
+.appointment-summary .payable-row {
+  padding-top: 12px;
+  border-top: 1px solid #e2e8f0;
+  color: #132033;
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+
+.confirm-appointment {
+  width: 100%;
+  margin-top: 18px;
+}
+
+.records-panel {
+  margin-top: 18px;
+}
+
+.records-panel button {
+  padding: 0 14px;
+}
+
+.records-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px;
+}
+
+.record-card {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.record-card > span {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: #e0f2fe;
+  color: #075985;
+  font-weight: 900;
+}
+
+.record-card h3 {
+  margin: 0 0 4px;
+  font-size: 0.98rem;
+}
+
+.record-card p {
+  margin: 0;
+  color: #64748b;
+}
+
+.record-card strong {
+  color: #0f766e;
+}
+
+@media (max-width: 1060px) {
+  .health-layout,
+  .health-hero,
+  .health-search {
+    grid-template-columns: 1fr;
+  }
+
+  .appointment-panel {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .health-hero,
+  .provider-panel,
+  .appointment-panel,
+  .records-panel {
+    padding: 16px;
+  }
+
+  .health-section-heading,
+  .provider-footer {
+    display: grid;
+  }
+
+  .record-card {
+    grid-template-columns: 48px minmax(0, 1fr);
+  }
+
+  .record-card strong {
+    grid-column: 2;
+  }
+}
