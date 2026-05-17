@@ -17,7 +17,9 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('token', response.data.token);
       return response.data;
     } catch (error) {
-      const message = error.response?.data?.message ||
+      const message = !error.response && error.message === 'Network Error'
+        ? 'Cannot reach backend API. Start the backend server on http://localhost:5000 and try again.'
+        : error.response?.data?.message ||
         error.response?.data?.errors?.[0]?.msg ||
         error.message ||
         'Login failed';
@@ -36,7 +38,9 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('token', response.data.token);
       return response.data;
     } catch (error) {
-      const message = error.response?.data?.message ||
+      const message = !error.response && error.message === 'Network Error'
+        ? 'Cannot reach backend API. Start the backend server on http://localhost:5000 and try again.'
+        : error.response?.data?.message ||
         error.response?.data?.errors?.[0]?.msg ||
         error.message ||
         'Registration failed';

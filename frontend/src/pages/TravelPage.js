@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import usePersistentState from '../hooks/usePersistentState';
 import './travelPage.css';
 
 const cityData = {
@@ -142,6 +143,7 @@ const TravelPage = () => {
   const [passengers, setPassengers] = useState(1);
   const [hotelCity, setHotelCity] = useState('Mumbai');
   const [rooms, setRooms] = useState(1);
+  const [bookings, setBookings] = usePersistentState('oneindia.travel.bookings', []);
 
   const distance = useMemo(() => getDistance(fromCity, toCity), [fromCity, toCity]);
   const travelOptions = useMemo(() => buildOptions(distance), [distance]);
@@ -152,6 +154,20 @@ const TravelPage = () => {
   const swapCities = () => {
     setFromCity(toCity);
     setToCity(fromCity);
+  };
+
+  const saveBooking = (name, amount) => {
+    setBookings((currentBookings) => [
+      {
+        id: Date.now(),
+        service: activeTab,
+        name,
+        route: activeTab === 'hotels' ? hotelCity : `${fromCity} to ${toCity}`,
+        date: travelDate,
+        amount,
+      },
+      ...currentBookings,
+    ]);
   };
 
   return (
@@ -300,7 +316,7 @@ const TravelPage = () => {
                 </ul>
                 <div className="result-footer">
                   <strong>{formatCurrency(hotel.price * rooms)}</strong>
-                  <button type="button">Book</button>
+                  <button type="button" onClick={() => saveBooking(hotel.name, hotel.price * rooms)}>Book</button>
                 </div>
               </article>
             ))}
@@ -327,7 +343,30 @@ const TravelPage = () => {
                 </ul>
                 <div className="result-footer">
                   <strong>{formatCurrency(option.price * passengers)}</strong>
-                  <button type="button" disabled={routeProblem}>Book</button>
+                  <button type="button" disabled={routeProblem} onClick={() => saveBooking(option.name, option.price * passengers)}>Book</button>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {bookings.length > 0 && (
+        <div className="travel-results">
+          <div className="section-heading">
+            <h2>Saved travel bookings</h2>
+            <p>{bookings.length} saved after refresh</p>
+          </div>
+          <div className="result-grid">
+            {bookings.map((booking) => (
+              <article className="travel-result-card" key={booking.id}>
+                <div>
+                  <span className="result-pill">{booking.service}</span>
+                  <h3>{booking.name}</h3>
+                  <p>{booking.route} - {booking.date}</p>
+                </div>
+                <div className="result-footer">
+                  <strong>{formatCurrency(booking.amount)}</strong>
                 </div>
               </article>
             ))}

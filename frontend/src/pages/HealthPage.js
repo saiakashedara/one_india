@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import usePersistentState from '../hooks/usePersistentState';
 import './healthPage.css';
 
 const specialties = [
@@ -136,6 +137,8 @@ const HealthPage = () => {
   const [selectedProvider, setSelectedProvider] = useState(providers[0]);
   const [selectedSlot, setSelectedSlot] = useState(appointmentSlots[1]);
   const [visitMode, setVisitMode] = useState('Clinic');
+  const [appointments, setAppointments] = usePersistentState('oneindia.health.appointments', []);
+  const [records, setRecords] = usePersistentState('oneindia.health.records', medicalRecords);
 
   const cities = useMemo(() => ['All cities', ...new Set(providers.map((provider) => provider.city))], []);
 
@@ -157,6 +160,20 @@ const HealthPage = () => {
 
   const activeProvider = selectedProvider || filteredProviders[0] || providers[0];
   const appointmentTotal = activeProvider.fee + 49;
+
+  const confirmAppointment = () => {
+    setAppointments((currentAppointments) => [
+      {
+        id: Date.now(),
+        provider: activeProvider.name,
+        specialty: activeProvider.specialty,
+        slot: selectedSlot,
+        mode: visitMode,
+        total: appointmentTotal,
+      },
+      ...currentAppointments,
+    ]);
+  };
 
   return (
     <section className="health-page">
@@ -317,11 +334,35 @@ const HealthPage = () => {
             </div>
           </div>
 
-          <button type="button" className="confirm-appointment">
+          <button type="button" className="confirm-appointment" onClick={confirmAppointment}>
             Confirm appointment
           </button>
         </aside>
       </div>
+
+      {appointments.length > 0 && (
+        <div className="records-panel">
+          <div className="health-section-heading">
+            <div>
+              <h2>Saved appointments</h2>
+              <p>Your confirmed appointments stay saved after refresh.</p>
+            </div>
+            <span>{appointments.length} booked</span>
+          </div>
+          <div className="records-grid">
+            {appointments.map((appointment) => (
+              <article key={appointment.id} className="record-card">
+                <span>Appt</span>
+                <div>
+                  <h3>{appointment.provider}</h3>
+                  <p>{appointment.slot} - {appointment.mode}</p>
+                </div>
+                <strong>{formatCurrency(appointment.total)}</strong>
+              </article>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className="records-panel">
         <div className="health-section-heading">
@@ -329,10 +370,25 @@ const HealthPage = () => {
             <h2>Medical records</h2>
             <p>Reports, prescriptions and certificates saved for quick access.</p>
           </div>
-          <button type="button">Upload record</button>
+          <button
+            type="button"
+            onClick={() =>
+              setRecords((currentRecords) => [
+                {
+                  title: 'Uploaded Health Record',
+                  date: 'Today',
+                  status: 'Saved',
+                  type: 'File',
+                },
+                ...currentRecords,
+              ])
+            }
+          >
+            Upload record
+          </button>
         </div>
         <div className="records-grid">
-          {medicalRecords.map((record) => (
+          {records.map((record) => (
             <article key={record.title} className="record-card">
               <span>{record.type}</span>
               <div>

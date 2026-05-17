@@ -1,38 +1,159 @@
 .side-menu {
-  width: 220px;
-  background: linear-gradient(180deg, #fff7ef, #ffffff 35%, #eefaf1);
-  border-right: 1px solid #e6e6e6;
-  height: 100vh;
+  width: 240px;
+  min-height: 100vh;
   position: fixed;
   left: 0;
   top: 0;
-  padding: 20px 18px;
+  padding: 18px;
   box-sizing: border-box;
+  background: #111827;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  color: #ffffff;
 }
-.side-menu-inner h3 {
-  margin: 0 0 12px 0;
-  font-size: 16px;
-  color: #c05b0b;
+
+.side-menu-inner {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 36px);
 }
+
+.side-brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.side-brand > span {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ff9933, #ffffff 48%, #138808);
+  color: #111827;
+  font-weight: 900;
+}
+
+.side-brand strong,
+.side-brand p {
+  display: block;
+}
+
+.side-brand p {
+  margin: 3px 0 0;
+  color: #cbd5e1;
+  font-size: 0.82rem;
+}
+
+.side-menu nav {
+  margin-top: 22px;
+}
+
 .side-menu nav ul {
+  display: grid;
+  gap: 10px;
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.side-menu nav li {
-  margin-bottom: 12px;
-}
+
 .side-menu nav a {
-  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 0 12px;
+  border-radius: 8px;
+  color: #e5e7eb;
   text-decoration: none;
-  display: inline-block;
-  padding: 8px 10px;
-  border-radius: 12px;
+  font-weight: 800;
 }
-.side-menu nav a:hover {
-  background: rgba(255, 153, 51, 0.12);
+
+.side-menu nav a span {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  color: #111827;
+  font-size: 0.75rem;
+  font-weight: 900;
 }
+
+.side-menu nav a.home span {
+  background: #fde68a;
+}
+
+.side-menu nav a.payments span {
+  background: #bfdbfe;
+}
+
+.side-menu nav a.travel span {
+  background: #ddd6fe;
+}
+
+.side-menu nav a.health span {
+  background: #bbf7d0;
+}
+
+.side-menu nav a.shopping span {
+  background: #fed7aa;
+}
+
+.side-menu nav a.services span {
+  background: #ccfbf1;
+}
+
+.side-menu nav a:hover,
+.side-menu nav a.active {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.logout-button {
+  min-height: 42px;
+  margin-top: auto;
+  border: 0;
+  border-radius: 8px;
+  background: #ef4444;
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 900;
+}
+
 .main-with-side {
+  width: calc(100% - 240px);
   margin-left: 240px;
   padding: 24px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 860px) {
+  .side-menu {
+    width: 100%;
+    min-height: auto;
+    position: static;
+  }
+
+  .side-menu-inner {
+    min-height: auto;
+  }
+
+  .side-menu nav ul {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  .logout-button {
+    margin-top: 16px;
+  }
+
+  .main-with-side {
+    width: 100%;
+    margin-left: 0;
+    padding: 16px;
+  }
 }

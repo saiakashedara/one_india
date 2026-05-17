@@ -37,6 +37,8 @@ const User = require('./schemas/user')(sequelize, Sequelize);
 const Wallet = require('./schemas/wallet')(sequelize, Sequelize);
 const Transaction = require('./schemas/transaction')(sequelize, Sequelize);
 const KYC = require('./schemas/kyc')(sequelize, Sequelize);
+const AuditLog = require('./schemas/auditLog')(sequelize, Sequelize);
+const OtpToken = require('./schemas/otpToken')(sequelize, Sequelize);
 
 // Associations
 User.hasOne(Wallet, { foreignKey: 'userId' });
@@ -48,10 +50,15 @@ Transaction.belongsTo(User, { foreignKey: 'userId' });
 User.hasOne(KYC, { foreignKey: 'userId' });
 KYC.belongsTo(User, { foreignKey: 'userId' });
 
+User.hasMany(AuditLog, { foreignKey: 'userId' });
+AuditLog.belongsTo(User, { foreignKey: 'userId' });
+
 module.exports = {
   sequelize,
   User,
   Wallet,
   Transaction,
-  KYC
+  KYC,
+  AuditLog,
+  OtpToken
 };

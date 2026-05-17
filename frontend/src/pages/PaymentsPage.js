@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import usePersistentState from '../hooks/usePersistentState';
 import './paymentsPage.css';
 
 const quickAmounts = [500, 1000, 2000, 5000];
@@ -24,12 +25,12 @@ const formatCurrency = (amount) =>
   }).format(amount);
 
 const PaymentsPage = () => {
-  const [balance, setBalance] = useState(18450);
+  const [balance, setBalance] = usePersistentState('oneindia.payments.balance', 18450);
   const [addAmount, setAddAmount] = useState(1000);
   const [paymentMethod, setPaymentMethod] = useState('UPI');
   const [recipientPhone, setRecipientPhone] = useState(savedContacts[0].phone);
   const [transferAmount, setTransferAmount] = useState(500);
-  const [transactions, setTransactions] = useState(initialTransactions);
+  const [transactions, setTransactions] = usePersistentState('oneindia.payments.transactions', initialTransactions);
   const [filter, setFilter] = useState('All');
   const [message, setMessage] = useState('Wallet is ready for secure payments.');
   const [messageType, setMessageType] = useState('info');
@@ -173,6 +174,11 @@ const PaymentsPage = () => {
           <strong>Verified</strong>
           <p>Higher limits and secure transfers enabled</p>
         </article>
+            <article className="bnpl-status">
+              <span>BNPL Credit</span>
+              <strong>₹5,000 Available</strong>
+              <p>Next billing: 01 June</p>
+            </article>
       </div>
 
       <div className="payments-layout">

@@ -18,7 +18,7 @@ export const LoginPage = () => {
 
     try {
       await login(phone, password);
-      navigate('/dashboard');
+      navigate('/');
     } catch (err) {
       setError(err.message || 'Login failed');
     } finally {

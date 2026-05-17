@@ -1,24 +1,47 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 import './sideMenu.css';
 
+const navItems = [
+  { to: '/', label: 'Home', code: 'HO', tone: 'home' },
+  { to: '/services/payments', label: 'Payments', code: 'PA', tone: 'payments' },
+  { to: '/services/travel', label: 'Travel', code: 'TR', tone: 'travel' },
+  { to: '/services/health', label: 'Health', code: 'HE', tone: 'health' },
+  { to: '/services/shopping', label: 'Shopping', code: 'SH', tone: 'shopping' },
+  { to: '/services/home-services', label: 'Home Services', code: 'HS', tone: 'services' },
+];
+
 const SideMenu = () => {
+  const { logout } = useAuth();
+
   return (
     <aside className="side-menu">
       <div className="side-menu-inner">
-        <h3>Services</h3>
-        <nav>
+        <div className="side-brand">
+          <span>OI</span>
+          <div>
+            <strong>OneIndia</strong>
+            <p>Super app</p>
+          </div>
+        </div>
+
+        <nav aria-label="OneIndia services">
           <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/services/payments">Payments</Link></li>
-            <li><Link to="/services/travel">Travel</Link></li>
-            <li><Link to="/services/health">Health</Link></li>
-            <li><Link to="/services/shopping">Shopping</Link></li>
-            <li><Link to="/services/home-services">Home Services</Link></li>
-            <li><Link to="/services/others">Other Services</Link></li>
-            <li><Link to="/dashboard">Dashboard</Link></li>
+            {navItems.map((item) => (
+              <li key={item.to}>
+                <NavLink to={item.to} className={({ isActive }) => `${item.tone} ${isActive ? 'active' : ''}`}>
+                  <span>{item.code}</span>
+                  {item.label}
+                </NavLink>
+              </li>
+            ))}
           </ul>
         </nav>
+
+        <button type="button" className="logout-button" onClick={logout}>
+          Logout
+        </button>
       </div>
     </aside>
   );

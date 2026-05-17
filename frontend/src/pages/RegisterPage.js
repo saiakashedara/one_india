@@ -40,7 +40,7 @@ export const RegisterPage = () => {
     try {
       const { confirmPassword, ...registerData } = formData;
       await register(registerData);
-      navigate('/dashboard');
+      navigate('/');
     } catch (err) {
       setError(err.message || 'Registration failed');
     } finally {

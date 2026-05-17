@@ -8,12 +8,28 @@ const authRoutes = require('./modules/auth/routes');
 const usersRoutes = require('./modules/users/routes');
 const paymentsRoutes = require('./modules/payments/routes');
 const errorHandler = require('./middleware/errorHandler');
+const { requestId, securityHeaders, apiFirewall, rateLimit } = require('./middleware/security');
+const auditTrail = require('./middleware/audit');
 const logger = require('./utils/logger');
 
 const app = express();
 
 // Middleware
-app.use(helmet());
+app.disable('x-powered-by');
+app.set('trust proxy', 1);
+app.use(requestId);
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      baseUri: ["'self'"],
+      frameAncestors: ["'none'"],
+      objectSrc: ["'none'"]
+    }
+  },
+  crossOriginResourcePolicy: { policy: 'same-site' }
+}));
+app.use(securityHeaders);
 const allowedOrigins = [
   process.env.FRONTEND_URL || 'http://localhost:3000',
   'http://localhost:3001'
@@ -29,8 +45,15 @@ app.use(cors({
   credentials: true
 }));
 app.use(morgan('combined', { stream: logger.stream }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: process.env.JSON_BODY_LIMIT || '50kb' }));
+app.use(express.urlencoded({ extended: true, limit: process.env.FORM_BODY_LIMIT || '50kb' }));
+app.use(rateLimit({
+  windowMs: Number(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000,
+  max: Number(process.env.RATE_LIMIT_MAX) || 300,
+  keyPrefix: 'api'
+}));
+app.use(apiFirewall);
+app.use(auditTrail);
 
 // Database connection
 sequelize.authenticate()
@@ -45,6 +68,22 @@ sequelize.authenticate()
 // Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date() });
+});
+
+app.get('/security/status', (req, res) => {
+  res.json({
+    status: 'active',
+    controls: [
+      'helmet_headers',
+      'strict_cors',
+      'request_id',
+      'rate_limiting',
+      'payload_limits',
+      'api_firewall',
+      'auth_throttling'
+    ],
+    timestamp: new Date()
+  });
 });
 
 // API Routes
