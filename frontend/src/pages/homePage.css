@@ -1,0 +1,143 @@
+.home-hero {
+  min-height: 70vh;
+  padding: 48px 36px;
+  background: radial-gradient(circle at top left, #ff9933 0%, #ff9933 12%, #ffffff 12%, #ffffff 55%, #138808 55%, #138808 100%);
+  color: #1b2432;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-hero::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 280px;
+  height: 280px;
+  background: rgba(0, 111, 61, 0.12);
+  border-radius: 50%;
+}
+
+.home-hero-top {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.home-logo {
+  width: 90px;
+  height: 90px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #ff9933, #ffffff 35%, #138808);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  border: 4px solid #ffffff;
+}
+
+.logo-text {
+  font-size: 42px;
+}
+
+.home-hero h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  line-height: 1.05;
+}
+
+.home-hero p {
+  max-width: 720px;
+  font-size: 1.06rem;
+  margin: 0;
+}
+
+.home-aim {
+  margin-top: 42px;
+  display: grid;
+  gap: 20px;
+}
+
+.aim-card {
+  background: rgba(255, 255, 255, 0.82);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.aim-card h3 {
+  margin: 0 0 12px;
+  color: #0f172a;
+}
+
+.aim-card p {
+  margin: 0;
+  color: #334155;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 36px;
+}
+
+.service-tile {
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 26px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.service-tile::after {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(19, 136, 8, 0.1);
+  top: -30px;
+  right: -40px;
+}
+
+.service-tile h4 {
+  margin: 0 0 10px;
+  font-size: 1.3rem;
+}
+
+.tile-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.tile-badge span {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: #f8fafc;
+  font-size: 1.2rem;
+}
+
+.service-tile ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.service-tile li {
+  margin-bottom: 8px;
+  color: #475569;
+}
+
+.app-background {
+  background: radial-gradient(circle at top, rgba(255, 153, 51, 0.12), transparent 38%),
+              radial-gradient(circle at bottom left, rgba(19, 136, 8, 0.14), transparent 28%),
+              linear-gradient(180deg, #ffffff, #f8fafc);
+}

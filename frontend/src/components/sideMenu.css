@@ -1,0 +1,38 @@
+.side-menu {
+  width: 220px;
+  background: linear-gradient(180deg, #fff7ef, #ffffff 35%, #eefaf1);
+  border-right: 1px solid #e6e6e6;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 20px 18px;
+  box-sizing: border-box;
+}
+.side-menu-inner h3 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  color: #c05b0b;
+}
+.side-menu nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.side-menu nav li {
+  margin-bottom: 12px;
+}
+.side-menu nav a {
+  color: #0f172a;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 10px;
+  border-radius: 12px;
+}
+.side-menu nav a:hover {
+  background: rgba(255, 153, 51, 0.12);
+}
+.main-with-side {
+  margin-left: 240px;
+  padding: 24px;
+}

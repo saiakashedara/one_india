@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import '../styles/auth.css';
 
 export const LoginPage = () => {
@@ -61,7 +61,7 @@ export const LoginPage = () => {
         </form>
 
         <p>
-          Don't have an account? <a href="/register">Register here</a>
+          Don't have an account? <Link to="/register">Register here</Link>
         </p>
       </div>
     </div>

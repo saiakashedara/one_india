@@ -1,5 +1,5 @@
 import React, { createContext, useState, useCallback } from 'react';
-import axios from 'axios';
+import { authAPI } from '../services/api';
 
 export const AuthContext = createContext();
 
@@ -11,13 +11,17 @@ export const AuthProvider = ({ children }) => {
   const login = useCallback(async (phone, password) => {
     setLoading(true);
     try {
-      const response = await axios.post('/api/auth/login', { phone, password });
+      const response = await authAPI.login(phone, password);
       setUser(response.data.user);
       setToken(response.data.token);
       localStorage.setItem('token', response.data.token);
       return response.data;
     } catch (error) {
-      throw error.response?.data?.message || 'Login failed';
+      const message = error.response?.data?.message ||
+        error.response?.data?.errors?.[0]?.msg ||
+        error.message ||
+        'Login failed';
+      throw new Error(message);
     } finally {
       setLoading(false);
     }
@@ -26,13 +30,17 @@ export const AuthProvider = ({ children }) => {
   const register = useCallback(async (userData) => {
     setLoading(true);
     try {
-      const response = await axios.post('/api/auth/register', userData);
+      const response = await authAPI.register(userData);
       setUser(response.data.user);
       setToken(response.data.token);
       localStorage.setItem('token', response.data.token);
       return response.data;
     } catch (error) {
-      throw error.response?.data?.message || 'Registration failed';
+      const message = error.response?.data?.message ||
+        error.response?.data?.errors?.[0]?.msg ||
+        error.message ||
+        'Registration failed';
+      throw new Error(message);
     } finally {
       setLoading(false);
     }

@@ -14,8 +14,18 @@ const app = express();
 
 // Middleware
 app.use(helmet());
+const allowedOrigins = [
+  process.env.FRONTEND_URL || 'http://localhost:3000',
+  'http://localhost:3001'
+];
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS policy does not allow access from the specified Origin.'));
+    }
+  },
   credentials: true
 }));
 app.use(morgan('combined', { stream: logger.stream }));
